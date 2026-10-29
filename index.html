@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="index, follow">
+  
+  <!-- SEO e Redes Sociais (atualizados dinamicamente pelo CONFIG) -->
+  <title>Página de Links</title>
+  <meta name="description" content="Acesse nossos canais e redes sociais oficiais.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Página de Links">
+  <meta property="og:description" content="Acesse nossos canais e redes sociais oficiais.">
+  <meta property="og:image" content="">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Página de Links">
+  <meta name="twitter:description" content="Acesse nossos canais e redes sociais oficiais.">
+  <meta name="theme-color" id="meta-theme-color" content="#0F1115">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Tipografia do Google Fonts com fallback para fontes do sistema -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       SISTEMA DE DESIGN & VARIÁVEIS CSS (Escala modular de 4px)
+       ========================================================================== */
+    :root {
+      /* Cores padrão (sobrescritas dinamicamente pelo script CONFIG) */
+      --cor-principal: #3B82F6;
+      --cor-principal-alpha15: rgba(59, 130, 246, 0.15);
+      --cor-principal-alpha30: rgba(59, 130, 246, 0.30);
+      --cor-fundo: #0F1115;
+      --cor-texto: #FFFFFF;
+      --cor-destaque-texto: #FFFFFF;
+      --cor-borda-card: rgba(255, 255, 255, 0.10);
+      --cor-fundo-card: rgba(255, 255, 255, 0.06);
+
+      /* Escala de Espaçamento de 4px */
+      --espaco-4: 4px;
+      --espaco-8: 8px;
+      --espaco-12: 12px;
+      --espaco-16: 16px;
+      --espaco-24: 24px;
+      --espaco-28: 28px;
+      --espaco-32: 32px;
+      --espaco-40: 40px;
+
+      /* Raios de Arredondamento */
+      --raio-sm: 8px;
+      --raio-md: 12px;
+      --raio-lg: 16px;
+      --raio-full: 9999px;
+
+      /* Tipografia */
+      --fonte-titulo: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --fonte-corpo: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      /* Animação / Transições */
+      --transicao-padrao: 200ms ease-out;
+      --curva-suave: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Reset Moderno */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo);
+      line-height: 1.4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Brilho radial sutil atrás do cabeçalho */
+    .bg-glow {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      height: 380px;
+      background: radial-gradient(circle at 50% 110px, var(--cor-principal-alpha15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Barra superior com botão Compartilhar */
+    .top-bar {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      justify-content: flex-end;
+      padding: var(--espaco-16) var(--espaco-16) 0;
+      z-index: 2;
+    }
+
+    .btn-compartilhar {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--cor-borda-card);
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--raio-full);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: background var(--transicao-padrao), border-color var(--transicao-padrao), transform var(--transicao-padrao);
+    }
+
+    .btn-compartilhar:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--cor-principal);
+      transform: translateY(-1px);
+    }
+
+    .btn-compartilhar:active {
+      transform: scale(0.96);
+    }
+
+    /* Container Central Principal */
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      padding: var(--espaco-12) var(--espaco-24) 0;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       CABEÇALHO
+       ========================================================================== */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: var(--espaco-32);
+    }
+
+    /* Envoltório da Logo Circular + Anel SVG */
+    .avatar-wrapper {
+      position: relative;
+      width: 108px;
+      height: 108px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--espaco-16);
+      /* Animação Cena 1 */
+      opacity: 0;
+      transform: scale(0.8);
+      animation: animarAvatar 600ms var(--curva-suave) forwards;
+    }
+
+    /* Envoltório da Logo em Formato Horizontal */
+    .logo-wrapper-horizontal {
+      width: 100%;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--espaco-16);
+      /* Animação Cena 1 */
+      opacity: 0;
+      transform: scale(0.9);
+      animation: animarAvatar 600ms var(--curva-suave) forwards;
+    }
+
+    .logo-banner-img {
+      width: 100%;
+      max-width: 270px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 4px 18px var(--cor-principal-alpha30));
+    }
+
+    /* Anel SVG */
+    .avatar-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 108px;
+      height: 108px;
+      transform: rotate(-90deg);
+      pointer-events: none;
+    }
+
+    .avatar-ring circle {
+      fill: none;
+      stroke: var(--cor-principal);
+      stroke-width: 2.5;
+      stroke-dasharray: 327;
+      stroke-dashoffset: 327;
+      stroke-linecap: round;
+      /* Animação Cena 2 */
+      animation: desenharAnel 900ms var(--curva-suave) forwards;
+    }
+
+    /* Conteúdo do Avatar (Imagem ou Iniciais) */
+    .avatar-circle {
+      width: 102px;
+      height: 102px;
+      border-radius: var(--raio-full);
+      background-color: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 8px 10px;
+      display: block;
+    }
+
+    .avatar-iniciais {
+      font-family: var(--fonte-titulo);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--cor-principal);
+      letter-spacing: 0.5px;
+    }
+
+    /* Textos do Cabeçalho */
+    .header-text {
+      opacity: 0;
+      transform: translateY(8px);
+      /* Animação Cena 3 */
+      animation: animarFadeUp 500ms var(--curva-suave) 250ms forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nome-empresa {
+      font-family: var(--fonte-titulo);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      color: var(--cor-texto);
+      margin-bottom: 6px;
+    }
+
+    .descricao-empresa {
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.75;
+      max-width: 380px;
+      line-height: 1.4;
+      margin-bottom: var(--espaco-12);
+    }
+
+    /* Status de Horário de Funcionamento */
+    .status-horario {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--raio-full);
+      opacity: 0.85;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: var(--raio-full);
+      flex-shrink: 0;
+    }
+
+    .status-dot.aberto {
+      background-color: #10B981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
+    }
+
+    .status-dot.fechado {
+      background-color: #6B7280;
+    }
+
+    .status-dot.neutro {
+      background-color: var(--cor-principal);
+    }
+
+    /* ==========================================================================
+       LISTA DE LINKS / BOTÕES
+       ========================================================================== */
+    .links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--espaco-12);
+      width: 100%;
+    }
+
+    .link-item {
+      width: 100%;
+      opacity: 0;
+      transform: translateY(16px);
+      /* Animação Cena 4 (em cascata) */
+      animation: animarFadeUp 500ms var(--curva-suave) calc(320ms + var(--i) * 70ms) forwards;
+    }
+
+    .link-btn {
+      width: 100%;
+      min-height: 60px;
+      padding: 14px 18px;
+      border-radius: var(--raio-lg);
+      background-color: var(--cor-fundo-card);
+      border: 1px solid var(--cor-borda-card);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: var(--cor-texto);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: transform var(--transicao-padrao), border-color var(--transicao-padrao), background-color var(--transicao-padrao), box-shadow var(--transicao-padrao);
+      position: relative;
+    }
+
+    .link-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--cor-principal);
+      background-color: rgba(255, 255, 255, 0.09);
+    }
+
+    .link-btn:active {
+      transform: scale(0.98);
+    }
+
+    .link-btn:focus-visible {
+      outline: 2px solid var(--cor-principal);
+      outline-offset: 3px;
+    }
+
+    /* Ícone do Botão */
+    .link-icone-box {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: var(--raio-md);
+      background-color: var(--cor-principal-alpha15);
+      color: var(--cor-principal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color var(--transicao-padrao), transform var(--transicao-padrao);
+    }
+
+    .link-icone-box svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    /* Conteúdo textual do botão */
+    .link-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-titulo {
+      font-family: var(--fonte-corpo);
+      font-size: 16px;
+      font-weight: 600;
+      color: inherit;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    .link-subtitulo {
+      font-size: 13px;
+      font-weight: 400;
+      opacity: 0.7;
+      color: inherit;
+      margin-top: 2px;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+
+    /* Seta do Botão */
+    .link-seta {
+      color: inherit;
+      opacity: 0.45;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transicao-padrao), opacity var(--transicao-padrao);
+      flex-shrink: 0;
+    }
+
+    .link-btn:hover .link-seta {
+      transform: translateX(4px);
+      opacity: 0.9;
+    }
+
+    /* Botão em Destaque */
+    .link-btn.destaque {
+      min-height: 68px;
+      background-color: var(--cor-principal);
+      color: var(--cor-destaque-texto);
+      border-color: transparent;
+      box-shadow: 0 4px 18px var(--cor-principal-alpha30);
+      /* Pulso sutil contínuo */
+      animation: pulsoDestaque 2.8s infinite ease-in-out;
+    }
+
+    .link-btn.destaque .link-icone-box {
+      background-color: rgba(0, 0, 0, 0.15);
+      color: var(--cor-destaque-texto);
+    }
+
+    .link-btn.destaque .link-subtitulo {
+      opacity: 0.85;
+    }
+
+    .link-btn.destaque .link-seta {
+      opacity: 0.8;
+    }
+
+    .link-btn.destaque:hover {
+      background-color: var(--cor-principal);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       REDES SOCIAIS
+       ========================================================================== */
+    .redes-container {
+      margin-top: var(--espaco-28);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var(--espaco-12);
+      flex-wrap: wrap;
+      /* Animação Cena 5 */
+      opacity: 0;
+      animation: animarFade 400ms var(--curva-suave) 700ms forwards;
+    }
+
+    .rede-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--raio-full);
+      background-color: var(--cor-fundo-card);
+      border: 1px solid var(--cor-borda-card);
+      color: var(--cor-texto);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform var(--transicao-padrao), border-color var(--transicao-padrao), background-color var(--transicao-padrao), color var(--transicao-padrao);
+    }
+
+    .rede-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .rede-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--cor-principal);
+      color: var(--cor-principal);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .rede-btn:active {
+      transform: scale(0.94);
+    }
+
+    .rede-btn:focus-visible {
+      outline: 2px solid var(--cor-principal);
+      outline-offset: 3px;
+    }
+
+    /* ==========================================================================
+       RODAPÉ
+       ========================================================================== */
+    footer {
+      margin-top: var(--espaco-40);
+      padding-bottom: max(var(--espaco-32), env(safe-area-inset-bottom));
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.5;
+      color: var(--cor-texto);
+      /* Animação Cena 5 */
+      opacity: 0;
+      animation: animarFade 400ms var(--curva-suave) 750ms forwards;
+    }
+
+    /* ==========================================================================
+       AVISO DE COPIADO (TOAST)
+       ========================================================================== */
+    .toast-aviso {
+      position: fixed;
+      bottom: max(var(--espaco-24), env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(30px);
+      background-color: rgba(20, 22, 28, 0.94);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: var(--raio-full);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms var(--curva-suave), transform 250ms var(--curva-suave);
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .toast-aviso.ativo {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+
+    .toast-aviso svg {
+      color: #10B981;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       ANIMAÇÕES DE ENTRADA (Apenas transform e opacity)
+       ========================================================================== */
+    @keyframes animarAvatar {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes desenharAnel {
+      from {
+        stroke-dashoffset: 327;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes animarFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes animarFade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Pulso sutil do botão destaque */
+    @keyframes pulsoDestaque {
+      0% {
+        box-shadow: 0 4px 18px var(--cor-principal-alpha30), 0 0 0 0 var(--cor-principal-alpha30);
+      }
+      60% {
+        box-shadow: 0 4px 18px var(--cor-principal-alpha30), 0 0 0 8px rgba(0, 0, 0, 0);
+      }
+      100% {
+        box-shadow: 0 4px 18px var(--cor-principal-alpha30), 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    /* ==========================================================================
+       ACESSIBILIDADE: PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .avatar-wrapper,
+      .logo-wrapper-horizontal,
+      .header-text,
+      .link-item,
+      .redes-container,
+      footer {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .avatar-ring circle {
+        stroke-dashoffset: 0 !important;
+      }
+      .link-btn.destaque {
+        animation: none !important;
+        box-shadow: 0 4px 18px var(--cor-principal-alpha30);
+      }
+    }
+  </style>
+
+  <!-- Fallback de Segurança caso o JavaScript esteja desativado -->
+  <noscript>
+    <style>
+      .avatar-wrapper, .logo-wrapper-horizontal, .header-text, .link-item, .redes-container, footer {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .avatar-ring circle { stroke-dashoffset: 0 !important; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <!-- Brilho radial no topo -->
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- Barra superior com botão Compartilhar -->
+  <div class="top-bar">
+    <button type="button" class="btn-compartilhar" id="btn-compartilhar" aria-label="Compartilhar esta página">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      <span>Compartilhar</span>
+    </button>
+  </div>
+
+  <!-- Container Principal -->
+  <main class="app-container">
+    
+    <!-- Cabeçalho (renderizado dinamicamente) -->
+    <header id="header-container"></header>
+
+    <!-- Navegação / Lista de Links -->
+    <nav aria-label="Links rápidos">
+      <ul class="links-list" id="links-container"></ul>
+    </nav>
+
+    <!-- Redes Sociais -->
+    <section class="redes-container" id="redes-container" aria-label="Redes sociais"></section>
+
+    <!-- Rodapé -->
+    <footer id="rodape-container"></footer>
+
+  </main>
+
+  <!-- Aviso de status (Toast acessível) -->
+  <div id="toast-aviso" class="toast-aviso" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-mensagem">Link copiado para a área de transferência!</span>
+  </div>
+
+  <!-- Tela de segurança caso o JavaScript esteja desativado -->
+  <noscript>
+    <div style="width: 100%; max-width: 480px; margin: 40px auto; padding: 24px; text-align: center; color: #FFFFFF; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;">
+      <img src="logo.png" alt="Logo Dragcar Centro Automotivo" width="240" height="114" style="max-width: 240px; height: auto; object-fit: contain; margin: 0 auto 16px; display: block;">
+      <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">Dragcar Centro Automotivo</h1>
+      <p style="font-size: 15px; opacity: 0.8; margin-bottom: 24px; line-height: 1.4;">Centro Automotivo em Florianópolis • Manutenção e Serviços</p>
+      <a href="https://wa.me/554896932062?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20da%20Dragcar%20e%20gostaria%20de%20um%20or%C3%A7amento." style="display: block; width: 100%; padding: 16px 20px; background-color: #CC1B29; color: #FFFFFF; text-decoration: none; border-radius: 16px; font-weight: 600; font-size: 16px; box-sizing: border-box;">
+        Chamar no WhatsApp
+      </a>
+      <p style="margin-top: 20px; font-size: 12px; opacity: 0.5;">Para a experiência completa com todos os links, ative o JavaScript.</p>
+    </div>
+  </noscript>
+
+  <script>
+    /* ==========================================================================
+       OBJETO DE CONFIGURAÇÃO (Altere apenas este bloco para cada cliente)
+       ========================================================================== */
+    const CONFIG = {
+      nome: "Dragcar Centro Automotivo",
+      descricao: "Centro Automotivo em Florianópolis • Manutenção e Serviços",
+      logo: "logo.png", // Arquivo ou URL da logo
+      favicon: "favicon.png", // Favicon com a logo oficial da Dragcar
+      formatoLogo: "horizontal", // "horizontal" (ideal para o formato da Dragcar) ou "circular"
+      iniciais: "DC",
+      corPrincipal: "#CC1B29", // Vermelho esportivo da logo Dragcar
+      corFundo: "#0A0A0C",     // Preto profundo da marca
+      corTexto: "#FFFFFF",     // Branco
+      whatsapp: { 
+        numero: "554896932062", // (48) 9693-2062
+        mensagem: "Olá! Vim pelo Instagram da Dragcar e gostaria de um orçamento." 
+      },
+      links: [
+        { 
+          titulo: "Chamar no WhatsApp", 
+          subtitulo: "Atendimento imediato e agendamentos", 
+          url: "", // Monta automaticamente wa.me com número e mensagem configurados
+          icone: "whatsapp", 
+          destaque: true 
+        },
+        { 
+          titulo: "Orçamento Imediato com IA", 
+          subtitulo: "Simulação instantânea sem precisar esperar", 
+          url: "https://orcamento.mareflow.com.br/simulador.html?o=dragcar", 
+          icone: "ia" 
+        },
+        { 
+          titulo: "Endereço", 
+          subtitulo: "Av. Gov. Ivo Silveira, 2.450 - Capoeiras", 
+          url: "https://www.google.com/maps?rlz=1C1ONGR_pt-PTBR1234BR1236&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7Mg8IARAuGCcYrwEYxwEYjgUyBggCEEUYOTIHCAMQABiABDIHCAQQABiABDIGCAUQRRg8MgYIBhBFGDwyBggHEEUYPNIBCDEwNzFqMGo0qAIAsAIB&um=1&ie=UTF-8&fb=1&gl=br&sa=X&geocode=KaFfbejONyeVMRU3BZg36iu4&daddr=Av.+Gov.+Ivo+Silveira,+2.450+-+Capoeiras,+Florian%C3%B3polis+-+SC,+88085-001", 
+          icone: "mapa" 
+        },
+        { 
+          titulo: "Nosso Site", 
+          subtitulo: "dragcar.com.br", 
+          url: "https://dragcar.com.br/", 
+          icone: "site" 
+        },
+        { 
+          titulo: "Instagram Oficial", 
+          subtitulo: "@dragcarr", 
+          url: "https://www.instagram.com/dragcarr/", 
+          icone: "instagram" 
+        },
+        { 
+          titulo: "Avalie no Google", 
+          subtitulo: "Sua opinião é muito importante para nós", 
+          url: "", // Vazio por enquanto (não será renderizado até ser preenchido)
+          icone: "estrela" 
+        }
+      ],
+      redes: [
+        { tipo: "instagram", url: "https://www.instagram.com/dragcarr/" },
+        { tipo: "facebook", url: "" },
+        { tipo: "youtube", url: "" },
+        { tipo: "tiktok", url: "" }
+      ],
+      horario: "Seg a Sex, 8h às 18h",
+      // Configuração para cálculo automático de "Aberto agora / Fechado":
+      // dias: 0 = Dom, 1 = Seg, 2 = Ter, 3 = Qua, 4 = Qui, 5 = Sex, 6 = Sáb
+      expediente: {
+        dias: [1, 2, 3, 4, 5],
+        abertura: 8,
+        fechamento: 18
+      },
+      rodape: "© [ANO] Dragcar Centro Automotivo • Todos os direitos reservados"
+    };
+
+    /* ==========================================================================
+       DICIONÁRIO DE ÍCONES SVG (Linha limpa, sem bibliotecas externas, currentColor)
+       ========================================================================== */
+    const ICONES = {
+      ia: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>`,
+      raio: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+      whatsapp: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`,
+      mapa: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`,
+      site: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+      instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>`,
+      facebook: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>`,
+      youtube: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor"></polygon></svg>`,
+      tiktok: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.062-.086a2.896 2.896 0 0 1 2.37-4.555c.348 0 .683.061.994.174V9.45a6.335 6.335 0 0 0-.994-.078 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 10.748 4.544c1.23-1.182 1.936-2.82 1.936-4.584V8.406a8.212 8.212 0 0 0 4.764 1.508V6.47a4.814 4.814 0 0 1-1-.216 4.773 4.773 0 0 1-.001.432z"/></svg>`,
+      estrela: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+      telefone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+      email: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>`,
+      seta: `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>`
+    };
+
+    /* ==========================================================================
+       FUNÇÕES UTILITÁRIAS & CÁLCULOS DE COR
+       ========================================================================== */
+    
+    // Converte HEX para formato RGBA com opacidade configurada
+    function hexParaRgba(hex, alpha) {
+      let limpo = hex.replace('#', '');
+      if (limpo.length === 3) {
+        limpo = limpo.split('').map(c => c + c).join('');
+      }
+      const r = parseInt(limpo.substring(0, 2), 16) || 0;
+      const g = parseInt(limpo.substring(2, 4), 16) || 0;
+      const b = parseInt(limpo.substring(4, 6), 16) || 0;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+
+    // Calcula a luminância relativa (WCAG) para garantir contraste automático
+    function calcularLuminancia(hex) {
+      let limpo = hex.replace('#', '');
+      if (limpo.length === 3) {
+        limpo = limpo.split('').map(c => c + c).join('');
+      }
+      const r = (parseInt(limpo.substring(0, 2), 16) || 0) / 255;
+      const g = (parseInt(limpo.substring(2, 4), 16) || 0) / 255;
+      const b = (parseInt(limpo.substring(4, 6), 16) || 0) / 255;
+
+      const [rLin, gLin, bLin] = [r, g, b].map(val => {
+        return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+      });
+
+      return 0.2126 * rLin + 0.7152 * gLin + 0.0722 * bLin;
+    }
+
+    // Retorna texto escuro ou claro conforme o fundo para contraste legível
+    function obterCorContraste(hexFundo) {
+      const lum = calcularLuminancia(hexFundo);
+      return lum > 0.45 ? '#0F1115' : '#FFFFFF';
+    }
+
+    // Configura o Favicon oficial (imagem da logo ou SVG dinâmico)
+    function gerarFavicon(iniciais, cor) {
+      const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.rel = 'shortcut icon';
+      const caminhoFavicon = CONFIG.favicon || CONFIG.logo;
+      if (caminhoFavicon && caminhoFavicon.trim() !== '') {
+        link.type = 'image/png';
+        link.href = caminhoFavicon;
+      } else {
+        const corTexto = obterCorContraste(cor);
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+          <rect width="64" height="64" rx="16" fill="${cor}"/>
+          <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" fill="${corTexto}" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="28">${iniciais}</text>
+        </svg>`;
+        link.type = 'image/svg+xml';
+        link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+      }
+      document.head.appendChild(link);
+    }
+
+    // Verifica se a empresa está aberta conforme o horário de Brasília (America/Sao_Paulo)
+    function checarStatusAberto(expediente) {
+      if (!expediente || !Array.isArray(expediente.dias)) return null;
+      try {
+        const agoraSp = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
+        const diaSemana = agoraSp.getDay();
+        const horaDecimal = agoraSp.getHours() + (agoraSp.getMinutes() / 60);
+
+        const diaAtivo = expediente.dias.includes(diaSemana);
+        const horarioAtivo = horaDecimal >= expediente.abertura && horaDecimal < expediente.fechamento;
+
+        return diaAtivo && horarioAtivo;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    // Função reservada para rastreamento de cliques (Analytics / Pixel / Webhook)
+    function aoClicar(link) {
+      /*
+       * Exemplo de integração com Google Analytics ou Meta Pixel:
+       * if (typeof gtag === 'function') {
+       *   gtag('event', 'click_bio_link', { event_label: link.titulo, url: link.url });
+       * }
+       * if (typeof fbq === 'function') {
+       *   fbq('trackCustom', 'CliqueLinkBio', { titulo: link.titulo, destino: link.url });
+       * }
+       */
+    }
+
+    // Exibe notificação acessível estilo Toast
+    let toastTimeout = null;
+    function exibirToast(mensagem) {
+      const toast = document.getElementById("toast-aviso");
+      const msgSpan = document.getElementById("toast-mensagem");
+      if (!toast || !msgSpan) return;
+
+      msgSpan.textContent = mensagem;
+      toast.classList.add("ativo");
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("ativo");
+      }, 2000);
+    }
+
+    // Manipula o botão de compartilhar (Web Share API ou Copiar Link)
+    async function compartilhar() {
+      const dadosCompartilhamento = {
+        title: CONFIG.nome,
+        text: CONFIG.descricao,
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(dadosCompartilhamento);
+        } catch (err) {
+          if (err.name !== 'AbortError') {
+            copiarUrlAtual();
+          }
+        }
+      } else {
+        copiarUrlAtual();
+      }
+    }
+
+    function copiarUrlAtual() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          exibirToast("Link copiado para a área de transferência!");
+        }).catch(() => {
+          fallbackCopiar();
+        });
+      } else {
+        fallbackCopiar();
+      }
+    }
+
+    function fallbackCopiar() {
+      const inputTemporario = document.createElement("input");
+      inputTemporario.value = window.location.href;
+      document.body.appendChild(inputTemporario);
+      inputTemporario.select();
+      try {
+        document.execCommand("copy");
+        exibirToast("Link copiado para a área de transferência!");
+      } catch (e) {
+        exibirToast("Não foi possível copiar o link.");
+      }
+      document.body.removeChild(inputTemporario);
+    }
+
+    /* ==========================================================================
+       MONTAGEM DINÂMICA DA PÁGINA
+       ========================================================================== */
+    function montarPagina() {
+      // 1. Aplica Cores e Variáveis Dinâmicas no :root
+      const root = document.documentElement;
+      root.style.setProperty('--cor-principal', CONFIG.corPrincipal);
+      root.style.setProperty('--cor-principal-alpha15', hexParaRgba(CONFIG.corPrincipal, 0.15));
+      root.style.setProperty('--cor-principal-alpha30', hexParaRgba(CONFIG.corPrincipal, 0.30));
+      root.style.setProperty('--cor-fundo', CONFIG.corFundo);
+      root.style.setProperty('--cor-texto', CONFIG.corTexto);
+      
+      const corTextoDestaque = obterCorContraste(CONFIG.corPrincipal);
+      root.style.setProperty('--cor-destaque-texto', corTextoDestaque);
+
+      // Meta theme-color e Favicon
+      const metaTheme = document.getElementById('meta-theme-color');
+      if (metaTheme) metaTheme.setAttribute('content', CONFIG.corFundo);
+      gerarFavicon(CONFIG.iniciais || CONFIG.nome.substring(0, 2).toUpperCase(), CONFIG.corPrincipal);
+
+      // Metadados SEO
+      document.title = `${CONFIG.nome} | Links`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', CONFIG.descricao);
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', CONFIG.nome);
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', CONFIG.descricao);
+
+      // 2. Renderiza Cabeçalho
+      const headerContainer = document.getElementById("header-container");
+      
+      // Avatar / Logo: Formato Horizontal, Circular ou Iniciais
+      const temLogo = CONFIG.logo && CONFIG.logo.trim() !== "";
+      const ehHorizontal = CONFIG.formatoLogo === "horizontal";
+      let logoHtml = "";
+
+      if (temLogo) {
+        if (ehHorizontal) {
+          logoHtml = `
+            <div class="logo-wrapper-horizontal">
+              <img src="${CONFIG.logo}" alt="Logo de ${CONFIG.nome}" class="logo-banner-img" width="217" height="85">
+            </div>
+          `;
+        } else {
+          logoHtml = `
+            <div class="avatar-wrapper">
+              <svg class="avatar-ring" viewBox="0 0 108 108" aria-hidden="true">
+                <circle cx="54" cy="54" r="52"></circle>
+              </svg>
+              <div class="avatar-circle">
+                <img src="${CONFIG.logo}" alt="Logo de ${CONFIG.nome}" class="avatar-img" width="102" height="102">
+              </div>
+            </div>
+          `;
+        }
+      } else {
+        logoHtml = `
+          <div class="avatar-wrapper">
+            <svg class="avatar-ring" viewBox="0 0 108 108" aria-hidden="true">
+              <circle cx="54" cy="54" r="52"></circle>
+            </svg>
+            <div class="avatar-circle">
+              <span class="avatar-iniciais">${CONFIG.iniciais || CONFIG.nome.substring(0, 2).toUpperCase()}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // Status de Horário
+      const statusAberto = checarStatusAberto(CONFIG.expediente);
+      let statusHtml = '';
+      if (CONFIG.horario && CONFIG.horario.trim() !== '') {
+        if (statusAberto === true) {
+          statusHtml = `<div class="status-horario" title="Horário de Brasília"><span class="status-dot aberto" aria-hidden="true"></span><span>Aberto agora • ${CONFIG.horario}</span></div>`;
+        } else if (statusAberto === false) {
+          statusHtml = `<div class="status-horario" title="Horário de Brasília"><span class="status-dot fechado" aria-hidden="true"></span><span>Fechado agora • ${CONFIG.horario}</span></div>`;
+        } else {
+          statusHtml = `<div class="status-horario"><span class="status-dot neutro" aria-hidden="true"></span><span>${CONFIG.horario}</span></div>`;
+        }
+      }
+
+      headerContainer.innerHTML = `
+        ${logoHtml}
+        <div class="header-text">
+          <h1 class="nome-empresa">${CONFIG.nome}</h1>
+          <p class="descricao-empresa">${CONFIG.descricao}</p>
+          ${statusHtml}
+        </div>
+      `;
+
+      // 3. Monta Link do WhatsApp padronizado
+      let numeroWhatsappLimpo = (CONFIG.whatsapp && CONFIG.whatsapp.numero) ? CONFIG.whatsapp.numero.replace(/\D/g, '') : '';
+      if (numeroWhatsappLimpo.length === 10 || numeroWhatsappLimpo.length === 11) {
+        numeroWhatsappLimpo = '55' + numeroWhatsappLimpo;
+      }
+      const urlWhatsappAuto = numeroWhatsappLimpo
+        ? `https://wa.me/${numeroWhatsappLimpo}?text=${encodeURIComponent(CONFIG.whatsapp.mensagem || '')}`
+        : '';
+
+      // 4. Renderiza Lista de Links
+      const linksContainer = document.getElementById("links-container");
+      let linksHtml = '';
+      let contadorValidos = 0;
+
+      if (Array.isArray(CONFIG.links)) {
+        CONFIG.links.forEach((item) => {
+          let urlDestino = (item.url || '').trim();
+
+          // Se for link de WhatsApp e estiver com URL vazia, usa o gerador automático
+          if (!urlDestino && (item.icone === 'whatsapp' || item.destaque)) {
+            urlDestino = urlWhatsappAuto;
+          }
+
+          // Se continuar sem URL válida, pula a renderização
+          if (!urlDestino) return;
+
+          const iconeSvg = ICONES[item.icone] || ICONES.site;
+          const classeDestaque = item.destaque ? 'destaque' : '';
+          const subtituloHtml = item.subtitulo ? `<span class="link-subtitulo">${item.subtitulo}</span>` : '';
+          const indiceAnimacao = contadorValidos++;
+
+          linksHtml += `
+            <li class="link-item" style="--i: ${indiceAnimacao};">
+              <a href="${urlDestino}" class="link-btn ${classeDestaque}" target="_blank" rel="noopener noreferrer" data-titulo="${item.titulo}">
+                <div class="link-icone-box" aria-hidden="true">${iconeSvg}</div>
+                <div class="link-info">
+                  <span class="link-titulo">${item.titulo}</span>
+                  ${subtituloHtml}
+                </div>
+                <div class="link-seta" aria-hidden="true">${ICONES.seta}</div>
+              </a>
+            </li>
+          `;
+        });
+      }
+      linksContainer.innerHTML = linksHtml;
+
+      // Event listener para contabilidade de cliques
+      linksContainer.querySelectorAll('.link-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          aoClicar({
+            titulo: btn.getAttribute('data-titulo'),
+            url: btn.getAttribute('href')
+          });
+        });
+      });
+
+      // 5. Renderiza Redes Sociais
+      const redesContainer = document.getElementById("redes-container");
+      let redesHtml = '';
+
+      if (Array.isArray(CONFIG.redes)) {
+        CONFIG.redes.forEach(rede => {
+          const urlRede = (rede.url || '').trim();
+          if (!urlRede) return; // Não renderiza se a url estiver vazia
+
+          const iconeRede = ICONES[rede.tipo] || ICONES.site;
+          const nomeRede = rede.tipo ? (rede.tipo.charAt(0).toUpperCase() + rede.tipo.slice(1)) : 'Rede Social';
+
+          redesHtml += `
+            <a href="${urlRede}" class="rede-btn" target="_blank" rel="noopener noreferrer" aria-label="Acessar nosso canal no ${nomeRede}" data-tipo="${rede.tipo}">
+              ${iconeRede}
+            </a>
+          `;
+        });
+      }
+      redesContainer.innerHTML = redesHtml;
+
+      // 6. Renderiza Rodapé
+      const rodapeContainer = document.getElementById("rodape-container");
+      const anoAtual = new Date().getFullYear().toString();
+      const textoRodape = (CONFIG.rodape || `© [ANO] ${CONFIG.nome}`)
+        .replace('[ANO]', anoAtual)
+        .replace('[NOME DA EMPRESA]', CONFIG.nome);
+      rodapeContainer.textContent = textoRodape;
+
+      // 7. Configura Botão de Compartilhar
+      const btnComp = document.getElementById("btn-compartilhar");
+      if (btnComp) {
+        btnComp.addEventListener("click", compartilhar);
+      }
+    }
+
+    // Inicializa a montagem quando o DOM estiver pronto
+    document.addEventListener("DOMContentLoaded", montarPagina);
+  </script>
+</body>
+</html>
